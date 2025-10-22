@@ -2,6 +2,9 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.routers import users
+from app.db.init_db import create_tables
+
+create_tables()
 
 app = FastAPI(
     title="ITicket API",
