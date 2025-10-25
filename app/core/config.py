@@ -1,15 +1,19 @@
-import os
-from dotenv import load_dotenv
 
-load_dotenv()
+from pydantic_settings import BaseSettings
 
 
-class Config:
-    SECRET_KEY = os.getenv('SECRET_KEY')
-    DB_HOST = os.getenv('DB_HOST')
-    DB_PORT = os.getenv('DB_PORT')
-    DB_USER = os.getenv('DB_USER')
-    DB_PASS = os.getenv('DB_PASS')
-    DB_NAME = os.getenv('DB_NAME')
+class Settings(BaseSettings):
+    DB_HOST: str
+    DB_PORT: int
+    DB_USER: str
+    DB_PASS: str
+    DB_NAME: str
+    SECRET_KEY: str = "supersecretkey"
+    ALGORITHM: str = "HS256"
+    ACCESS_TOKEN_EXPIRE_MINUTES: int = 60
 
-config = Config()
+    class Config:
+        env_file = ".env"
+
+
+settings = Settings()

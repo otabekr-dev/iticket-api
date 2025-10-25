@@ -3,6 +3,10 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from app.routers import users, venues, events, tickets, orders
 
+from app.db.init_db import create_tables
+
+create_tables()
+
 app = FastAPI(
     title="ITicket API",
     version="0.1.0"
